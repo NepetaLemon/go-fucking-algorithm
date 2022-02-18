@@ -7,12 +7,16 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 	l2 := len(text2)
 	memo = make([][]int, l1)
 	// 填充默认值
+
+	tmp := make([]int, l2)
+	for j := 0; j < l2; j++ {
+		tmp[j] = -1
+	}
+
 	for i := 0; i < l1; i++ {
-		tmp := make([]int, l2)
-		for j := 0; j < l2; j++ {
-			tmp[j] = -1
-		}
-		memo[i] = tmp
+		t := make([]int, l2)
+		copy(t, tmp)
+		memo[i] = t
 	}
 
 	return dp(text1, 0, text2, 0)
